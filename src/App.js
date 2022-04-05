@@ -6,9 +6,9 @@ import axios from "axios";
 const api = `https://jogo-library.herokuapp.com/jogo/`;
 
 export default function App() {
-  const [jogos, setJogos] = useState([]);
+  const [jogos, setJogos] = useState(null);
   const [text, setText] = useState("");
-
+  const [teste, setTeste] = useState("teste");
   useEffect(() => {
     const getJogos = async () => {
       try {
@@ -28,16 +28,23 @@ export default function App() {
     <div className="App">
       <h1>jogos</h1>.
       <SearchInput value={text} onChange={(search) => setText(search)} />
-      {text && !jogos.data && <span>Carregando...</span>}
-      {jogos.data && (
-        <ul>
-          {jogos.data.map((jogo) => (
-            <li key={jogo.result.id}>
-              <img src={jogo.result.link_image} alt="uga" />
-              {jogo.result.title}
-            </li>
-          ))}
-        </ul>
+      {text && !jogos ? (
+        <span>Carregando...</span>
+      ) : (
+        <>
+          <ul>
+            {jogos ? (
+              <>
+                {jogos.map((jogos) => (
+                  <li key={jogos.id}>
+                    <img src={jogos.link_image} alt="uga" />
+                    {jogos.title}
+                  </li>
+                ))}
+              </>
+            ) : null}
+          </ul>
+        </>
       )}
     </div>
   );
