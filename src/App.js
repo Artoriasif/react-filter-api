@@ -8,7 +8,6 @@ const api = `https://jogo-library.herokuapp.com/jogo/`;
 export default function App() {
   const [jogos, setJogos] = useState(null);
   const [text, setText] = useState("");
-  const [teste, setTeste] = useState("teste");
   useEffect(() => {
     const getJogos = async () => {
       try {
